@@ -1,6 +1,6 @@
 import type { NextConfig } from "next";
 
-const repoName = "web-login-reg"; // 👈 must match your repo name
+const repoName = "web-login-reg";
 
 const nextConfig: NextConfig = {
   output: "export",
