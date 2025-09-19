@@ -1,10 +1,9 @@
-// next.config.ts
 import type { NextConfig } from "next";
 
-const repoName = "login-reg-react"; // your repo name
+const repoName = "web-login-reg"; // 👈 must match your repo name
 
 const nextConfig: NextConfig = {
-  output: "export",  // <-- replaces `next export`
+  output: "export",
   basePath: `/${repoName}`,
   assetPrefix: `/${repoName}/`,
   trailingSlash: true,
