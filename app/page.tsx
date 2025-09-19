@@ -1,95 +1,152 @@
-import Image from "next/image";
+"use client";
+
+import { useState } from "react";
 import styles from "./page.module.css";
+import {
+  MailOutline,
+  LockClosedOutline,
+  PersonOutline,
+  CloseOutline,
+} from "react-ionicons";
 
-export default function Home() {
+export default function HomePage() {
+  const [isLoginActive, setIsLoginActive] = useState(true); // toggle login/register
+  const [isPopupActive, setIsPopupActive] = useState(false); // toggle popup wrapper
+
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>app/page.tsx</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <>
+      <header className={styles.header}>
+        <h2 className={styles.logo}>Logo</h2>
+        <nav className={styles.navigation}>
+          <a href="#">Home</a>
+          <a href="#">About</a>
+          <a href="#">Services</a>
+          <a href="#">Contact</a>
+          <button
+            className={styles["btnLogin-popup"]}
+            onClick={() => setIsPopupActive(true)}
+          >
+            Login
+          </button>
+        </nav>
+      </header>
 
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+      <main>
+        <div
+          className={`${styles.wrapper} ${
+            isPopupActive ? styles["active-popup"] : ""
+          } ${!isLoginActive ? styles.active : ""}`}
+        >
+          <span
+            className={styles["icon-close"]}
+            onClick={() => setIsPopupActive(false)}
           >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
+            <CloseOutline width="24px" height="24px" color="#ffffff" />
+          </span>
+
+          {/* Login Form */}
+          {isLoginActive && (
+            <div className={`${styles["form-box"]} ${styles.login}`}>
+              <h2>Login</h2>
+              <form action="#">
+                <div className={styles["input-box"]}>
+                  <span className={styles.icon}>
+                    <MailOutline width="20px" height="20px" color="#e2b09f" />
+                  </span>
+                  <input type="email" required name="email" />
+                  <label>Email</label>
+                </div>
+                <div className={styles["input-box"]}>
+                  <span className={styles.icon}>
+                    <LockClosedOutline
+                      width="20px"
+                      height="20px"
+                      color="#e2b09f"
+                    />
+                  </span>
+                  <input type="password" required name="password" />
+                  <label>Password</label>
+                </div>
+                <div className={styles["remember-forgot"]}>
+                  <label>
+                    <input type="checkbox" /> Remember me
+                  </label>
+                  <a href="#">Forgot Password?</a>
+                </div>
+                <button type="submit" className={styles.btn}>
+                  Login
+                </button>
+                <div className={styles["login-register"]}>
+                  <p>
+                    Don&apos;t have an account?{" "}
+                    <span
+                      className={styles["register-link"]}
+                      onClick={() => setIsLoginActive(false)}
+                    >
+                      Register
+                    </span>
+                  </p>
+                </div>
+              </form>
+            </div>
+          )}
+
+          {/* Register Form */}
+          {!isLoginActive && (
+            <div className={`${styles["form-box"]} ${styles.register}`}>
+              <h2>Registration</h2>
+              <form action="#">
+                <div className={styles["input-box"]}>
+                  <span className={styles.icon}>
+                    <PersonOutline width="20px" height="20px" color="#e2b09f" />
+                  </span>
+                  <input type="text" required name="username" />
+                  <label>Username</label>
+                </div>
+                <div className={styles["input-box"]}>
+                  <span className={styles.icon}>
+                    <MailOutline width="20px" height="20px" color="#e2b09f" />
+                  </span>
+                  <input type="email" required name="email" />
+                  <label>Email</label>
+                </div>
+                <div className={styles["input-box"]}>
+                  <span className={styles.icon}>
+                    <LockClosedOutline
+                      width="20px"
+                      height="20px"
+                      color="#e2b09f"
+                    />
+                  </span>
+                  <input type="password" required name="password" />
+                  <label>Password</label>
+                </div>
+                <div className={styles["remember-forgot"]}>
+                  <label>
+                    <input type="checkbox" /> Agree to terms & conditions
+                  </label>
+                </div>
+                <button type="submit" className={styles.btn}>
+                  Register
+                </button>
+                <div className={styles["login-register"]}>
+                  <p>
+                    Already have an account?{" "}
+                    <span
+                      className={styles["login-link"]}
+                      onClick={() => setIsLoginActive(true)}
+                    >
+                      Login
+                    </span>
+                  </p>
+                </div>
+              </form>
+            </div>
+          )}
         </div>
       </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+
+      <footer></footer>
+    </>
   );
 }
