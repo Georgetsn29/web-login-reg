@@ -94,7 +94,7 @@ export default function HomePage() {
           {/* Register Form */}
           {!isLoginActive && (
             <div className={`${styles["form-box"]} ${styles.register}`}>
-              <h2>Registration</h2>
+              <h2 className={styles.h2}>Registration</h2>
               <form action="#">
                 <div className={styles["input-box"]}>
                   <span className={styles.icon}>
