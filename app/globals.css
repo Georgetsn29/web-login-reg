@@ -10,6 +10,19 @@
   }
 }
 
+html,
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-image: url("/img/background.jpg"); /* ✅ leading / points to public folder */
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  color: var(--foreground);
+}
+
 * {
   box-sizing: border-box;
   padding: 0;
