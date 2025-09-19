@@ -47,7 +47,7 @@ export default function HomePage() {
           {/* Login Form */}
           {isLoginActive && (
             <div className={`${styles["form-box"]} ${styles.login}`}>
-              <h2>Login</h2>
+              <h2 >Login</h2>
               <form action="#">
                 <div className={styles["input-box"]}>
                   <span className={styles.icon}>
