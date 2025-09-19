@@ -107,6 +107,10 @@
   transform: translateX(0);
 }
 
+h2 {
+  color: #162938;
+}
+
 .active .login {
   transition: none;
   transform: translateX(-400px);
